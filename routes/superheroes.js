@@ -73,6 +73,8 @@ router.get("/:id/edit", middleware.checkSuperheroOwnership, function(req, res){
 
 // UPDATE SUPERHERO ROUTE
 router.put("/:id",middleware.checkSuperheroOwnership, function(req, res){
+    // set lastmodified to current time
+    req.body.superhero.datemodified = new Date();
     // find and update the correct superhero
     Superhero.findByIdAndUpdate(req.params.id, req.body.superhero, function(err, updatedSuperhero){
        if(err){
