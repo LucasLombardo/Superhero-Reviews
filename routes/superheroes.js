@@ -20,18 +20,19 @@ router.get("/", function(req, res){
 //CREATE - add new superhero to DB
 router.post("/", middleware.isLoggedIn, function(req, res){
     // get data from form/curr time and add to superheroes array
-    var name = req.body.name;
-    var image = req.body.image;
-    var civ = req.body.civname;
-    var loc = req.body.location;
-    var desc = req.body.description;
-    var date = new Date();
-    var mod = new Date();
+    var name    = req.body.name;
+    var image   = req.body.image;
+    var civ     = req.body.civname;
+    var loc     = req.body.location;
+    var desc    = req.body.description;
+    var rate    = 0;
+    var date    = new Date();
+    var mod     = new Date();
     var author = {
         id: req.user._id,
         username: req.user.username
     };
-    var newSuperhero = {name: name, image: image, civname: civ, location: loc, description: desc, dateadded: date, datemodified: mod, author:author};
+    var newSuperhero = {name: name, image: image, civname: civ, location: loc, description: desc, rating: rate, dateadded: date, datemodified: mod, author:author};
     // Create a new superhero and save to DB
     Superhero.create(newSuperhero, function(err, newlyCreated){
         if(err){

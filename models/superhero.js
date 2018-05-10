@@ -6,6 +6,7 @@ var superheroSchema = new mongoose.Schema({
    civname: String,
    location: String,
    description: String,
+   rating: Number,
    dateadded: Object,
    datemodified: Object,
    author: {
