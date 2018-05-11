@@ -1,9 +1,25 @@
 <% include ../partials/header %>
+<link rel="stylesheet" href="/stylesheets/comments.css">
+
 <div class="container">
     <div class="row">
         <h1 style="text-align: center">Edit Comment</h1>
         <div style="width: 30%; margin: 25px auto;">
             <form action="/superheroes/<%= superhero_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+                Update rating:
+                <div class="star-rating">
+                    <input type="radio" id="5-stars" name="comment[rating]" value="5" required <%= if(comment.rating == "5") "checked"; %>/>
+                    <label for="5-stars" class="star">&#9733;</label>
+                    <input type="radio" id="4-stars" name="comment[rating]" value="4" required <%= if(comment.rating == "4") "checked"; %>/>
+                    <label for="4-stars" class="star">&#9733;</label>
+                    <input type="radio" id="3-stars" name="comment[rating]" value="3" required <%= if(comment.rating == "3") "checked"; %>/>
+                    <label for="3-stars" class="star">&#9733;</label>
+                    <input type="radio" id="2-stars" name="comment[rating]" value="2" required <%= if(comment.rating == "2") "checked"; %>/>
+                    <label for="2-stars" class="star">&#9733;</label>
+                    <input type="radio" id="1-star" name="comment[rating]" value="1" required <%= if(comment.rating == "1") "checked"; %>/>
+                    <label for="1-star" class="star">&#9733;</label>
+                </div>
+                Update review:
                 <div class="form-group">
                     <input class="form-control" type="text" name="comment[text]" value="<%= comment.text %>">
                 </div>
