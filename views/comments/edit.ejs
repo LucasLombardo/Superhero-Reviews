@@ -8,15 +8,15 @@
             <form action="/superheroes/<%= superhero_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
                 Update rating:
                 <div class="star-rating">
-                    <input type="radio" id="5-stars" name="comment[rating]" value="5" required <%= if(comment.rating == "5") "checked"; %>/>
+                    <input type="radio" id="5-stars" name="comment[rating]" value="5" required/>
                     <label for="5-stars" class="star">&#9733;</label>
-                    <input type="radio" id="4-stars" name="comment[rating]" value="4" required <%= if(comment.rating == "4") "checked"; %>/>
+                    <input type="radio" id="4-stars" name="comment[rating]" value="4" required/>
                     <label for="4-stars" class="star">&#9733;</label>
-                    <input type="radio" id="3-stars" name="comment[rating]" value="3" required <%= if(comment.rating == "3") "checked"; %>/>
+                    <input type="radio" id="3-stars" name="comment[rating]" value="3" required/>
                     <label for="3-stars" class="star">&#9733;</label>
-                    <input type="radio" id="2-stars" name="comment[rating]" value="2" required <%= if(comment.rating == "2") "checked"; %>/>
+                    <input type="radio" id="2-stars" name="comment[rating]" value="2" required/>
                     <label for="2-stars" class="star">&#9733;</label>
-                    <input type="radio" id="1-star" name="comment[rating]" value="1" required <%= if(comment.rating == "1") "checked"; %>/>
+                    <input type="radio" id="1-star" name="comment[rating]" value="1" required/>
                     <label for="1-star" class="star">&#9733;</label>
                 </div>
                 Update review:
@@ -28,8 +28,20 @@
                 </div>
             </form>
             <a href="/superheroes">Go Back</a>
+            <p id="rating-num"><%= comment.rating %></p>
         </div>
     </div>
 </div>
+
+<script>
+    //set current star rating
+    var rating = document.querySelector("#rating-num").textContent;
+    checkStars(rating);
+    function checkStars(n){
+    	var radioId = n + "-stars";
+    	var radioBtn = document.getElementById(radioId);
+    	radioBtn.setAttribute("checked", "checked");
+    }
+</script>
 <% include ../partials/footer %>
 

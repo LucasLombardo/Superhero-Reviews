@@ -39,8 +39,8 @@
                 <% superhero.comments.forEach(function(comment){ %>
                     <div class="row">
                         <div class="col-md-12">
-                            <strong><%= comment.author.username %></strong>
-                            <span class="pull-right">10 days ago</span>
+                            <strong><%= comment.author.username %> - <%= comment.rating %>/5 stars</strong>
+                            <span class="pull-right"><%= comment.dateadded.toDateString() %></span>
                             <p>
                                 <%= comment.text %> 
                             </p>

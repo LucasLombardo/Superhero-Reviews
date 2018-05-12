@@ -33,9 +33,13 @@ router.post("/",middleware.isLoggedIn,function(req, res){
                //add username and id to comment
                comment.author.id = req.user._id;
                comment.author.username = req.user.username;
+               //add current time/date to comment
+               comment.dateadded = new Date();
+               comment.datemodified = new Date();
                //save comment
                comment.save();
                superhero.comments.push(comment);
+               superhero.calcRating();
                superhero.save();
                console.log(comment);
                req.flash("success", "Successfully added comment");

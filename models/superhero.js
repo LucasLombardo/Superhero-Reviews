@@ -24,4 +24,8 @@ var superheroSchema = new mongoose.Schema({
    ]
 });
 
+superheroSchema.methods.calcRating = function() {
+    console.log(this.comments);
+}
+
 module.exports = mongoose.model("Superhero", superheroSchema);
