@@ -6,7 +6,15 @@
             <p class="lead">Superhero Reviews: <strong><%=superhero.name%></strong></p>
             <div class="list-group">
                 <li class="list-group-item"><strong>Civilian Name:</strong> <%= superhero.civname %></li>
-                <li class="list-group-item"><strong>Rating:</strong> <%= superhero.rating %></li>
+                <li class="list-group-item"><strong>Rating:</strong> <%= superhero.rating %>/5 (<%= superhero.ratingstotal %> reviews)
+                    <div class="star-rated r5">
+                      <p class='output-star os-5'>&#9733;<p/>
+                      <p class='output-star os-4'>&#9733;<p/>
+                      <p class='output-star os-3'>&#9733;<p/>
+                      <p class='output-star os-2'>&#9733;<p/>
+                      <p class='output-star os-1'>&#9733;<p/>
+                    </div>
+                </li>
                 <li class="list-group-item">
                     <strong>Location:</strong> <span id='hero-location'><%=superhero.location%></span>
                     <div id="map"><strong><p id='notfoundmsg'></p></strong></div>

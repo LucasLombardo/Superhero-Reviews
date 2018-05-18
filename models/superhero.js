@@ -7,6 +7,7 @@ var superheroSchema = new mongoose.Schema({
    location: String,
    description: String,
    rating: Number,
+   ratingstotal: Number,
    dateadded: Object,
    datemodified: Object,
    author: {
@@ -23,9 +24,5 @@ var superheroSchema = new mongoose.Schema({
       }
    ]
 });
-
-superheroSchema.methods.calcRating = function() {
-    console.log(this.comments);
-}
 
 module.exports = mongoose.model("Superhero", superheroSchema);

@@ -39,8 +39,20 @@ router.post("/",middleware.isLoggedIn,function(req, res){
                //save comment
                comment.save();
                superhero.comments.push(comment);
-               superhero.calcRating();
                superhero.save();
+              //find the superhero with provided ID and update rating
+              Superhero.findById(req.params.id).populate("comments").exec(function(err, foundSuperhero){
+                    if(err){
+                        console.log(err);
+                    } else {
+                        var ratings = foundSuperhero.comments.map(c => c.rating);
+                        ratings.push(comment.rating);
+                        var averageRating = Math.round(ratings.reduce((accum, n)=>accum+n, 0)/ratings.length);
+                        superhero.rating = averageRating;
+                        superhero.ratingstotal = ratings.length;
+                        superhero.save();
+                    }
+              });
                console.log(comment);
                req.flash("success", "Successfully added comment");
                res.redirect('/superheroes/' + superhero._id);
@@ -71,7 +83,18 @@ router.put("/:comment_id", middleware.checkCommentOwnership, function(req, res){
       } else {
           res.redirect("/superheroes/" + req.params.id );
       }
-   });
+    });
+    //update average rating
+    Superhero.findById(req.params.id).populate("comments").exec(function(err, foundSuperhero){
+        if(err){
+            console.log(err);
+        } else {
+            var ratings = foundSuperhero.comments.map(c => c.rating);
+            var averageRating = Math.round(ratings.reduce((accum, n)=>accum+n, 0)/ratings.length);
+            foundSuperhero.rating = averageRating;
+            foundSuperhero.save();
+        }
+    });
 });
 
 // COMMENT DESTROY ROUTE
@@ -84,6 +107,18 @@ router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, re
            req.flash("success", "Comment deleted");
            res.redirect("/superheroes/" + req.params.id);
        }
+    });
+    //find the superhero with provided ID and update rating
+    Superhero.findById(req.params.id).populate("comments").exec(function(err, foundSuperhero){
+        if(err){
+            console.log(err);
+        } else {
+            var ratings = foundSuperhero.comments.map(c => c.rating);
+            var averageRating = Math.round(ratings.reduce((accum, n)=>accum+n, 0)/ratings.length);
+            foundSuperhero.rating = averageRating;
+            foundSuperhero.ratingstotal--;
+            foundSuperhero.save();
+        }
     });
 });
 
