@@ -2,6 +2,26 @@
     width: 100%;
 }
 
+.index-img{
+  max-height: 238px;
+}
+@media only screen and (max-width: 1200px) {
+  .index-img {
+      max-height: 194px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .index-img {
+      max-height: 228px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .index-img {
+      max-height: 476px;
+  }
+}
+
+
 .thumbnail {
     padding: 0;
 }
@@ -12,4 +32,27 @@
 
 #delete-form {
     display: inline;
+}
+
+h5 {
+  margin-top: 0;
+}
+
+/*Stars formatting*/
+.star-rated {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding: 0 .2em;
+  text-align:center;
+  width:5em;
+  color: #ccc;
+}
+.star-rated p {
+  margin: 0;
+}
+/* Highlight stars */
+.r1 .os-1, .r2 .os-1, .r2 .os-2, .r3 .os-1, .r3 .os-2, .r3 .os-3, .r4 .os-1, .r4 .os-2, .r4 .os-3, .r4 .os-4, .r5 {
+  color: #f90;
 }

@@ -48,9 +48,9 @@ router.post("/",middleware.isLoggedIn,function(req, res){
                         var ratings = foundSuperhero.comments.map(c => c.rating);
                         ratings.push(comment.rating);
                         var averageRating = Math.round(ratings.reduce((accum, n)=>accum+n, 0)/ratings.length);
-                        superhero.rating = averageRating;
-                        superhero.ratingstotal = ratings.length;
-                        superhero.save();
+                        foundSuperhero.rating = averageRating;
+                        foundSuperhero.ratingstotal = ratings.length;
+                        foundSuperhero.save();
                     }
               });
                console.log(comment);
@@ -114,9 +114,9 @@ router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, re
             console.log(err);
         } else {
             var ratings = foundSuperhero.comments.map(c => c.rating);
-            var averageRating = Math.round(ratings.reduce((accum, n)=>accum+n, 0)/ratings.length);
+            var averageRating = Math.round(ratings.reduce((accum, n)=>accum+n, 0)/ratings.length) || 0;
             foundSuperhero.rating = averageRating;
-            foundSuperhero.ratingstotal--;
+            foundSuperhero.ratingstotal-= 1;
             foundSuperhero.save();
         }
     });

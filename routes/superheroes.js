@@ -26,13 +26,14 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     var loc     = req.body.location;
     var desc    = req.body.description;
     var rate    = 0;
+    var rates   = 0;
     var date    = new Date();
     var mod     = new Date();
     var author = {
         id: req.user._id,
         username: req.user.username
     };
-    var newSuperhero = {name: name, image: image, civname: civ, location: loc, description: desc, rating: rate, dateadded: date, datemodified: mod, author:author};
+    var newSuperhero = {name: name, image: image, civname: civ, location: loc, description: desc, rating: rate, ratingstotal: rates, dateadded: date, datemodified: mod, author:author};
     // Create a new superhero and save to DB
     Superhero.create(newSuperhero, function(err, newlyCreated){
         if(err){

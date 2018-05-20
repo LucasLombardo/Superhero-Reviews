@@ -46,6 +46,7 @@
                 </div>
                 <hr>
                 <% superhero.comments.forEach(function(comment){ %>
+                    <% console.log(superhero.comments) %>
                     <div class="row">
                         <div class="col-md-12">
                             <strong><%= comment.author.username %></strong> 
