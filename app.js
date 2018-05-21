@@ -16,7 +16,8 @@ var commentRoutes    = require("./routes/comments"),
     superheroRoutes = require("./routes/superheroes"),
     indexRoutes      = require("./routes/index")
     
-mongoose.connect("mongodb://localhost/superheroreviews");
+mongoose.connect(process.env.DATABASEURL);
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
