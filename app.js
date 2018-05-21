@@ -11,6 +11,10 @@ var express     = require("express"),
     User        = require("./models/user");
     // seedDB      = require("./seeds")
     
+console.log("=================");
+console.log(process.env.GMKEY);
+console.log("=================");
+    
 //requiring routes
 var commentRoutes    = require("./routes/comments"),
     superheroRoutes = require("./routes/superheroes"),
