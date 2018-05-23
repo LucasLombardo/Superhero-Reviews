@@ -11,9 +11,6 @@ var express     = require("express"),
     User        = require("./models/user");
     // seedDB      = require("./seeds")
     
-console.log("=================");
-console.log(process.env.GMKEY);
-console.log("=================");
     
 //requiring routes
 var commentRoutes    = require("./routes/comments"),
@@ -21,6 +18,7 @@ var commentRoutes    = require("./routes/comments"),
     indexRoutes      = require("./routes/index")
     
 mongoose.connect(process.env.DATABASEURL);
+// mongoose.connect('mongodb://localhost/shr-test');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
