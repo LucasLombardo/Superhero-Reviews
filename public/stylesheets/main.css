@@ -56,3 +56,9 @@ h5 {
 .r1 .os-1, .r2 .os-1, .r2 .os-2, .r3 .os-1, .r3 .os-2, .r3 .os-3, .r4 .os-1, .r4 .os-2, .r4 .os-3, .r4 .os-4, .r5 {
   color: #f90;
 }
+
+#textarea-input {
+	height: 120px;
+	resize: none;
+	margin-top: 10px;
+}

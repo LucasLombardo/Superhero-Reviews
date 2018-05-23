@@ -27,12 +27,6 @@
     margin-bottom: 12px;
 }
 
-#review-input {
-	height: 120px;
-	resize: none;
-	margin-top: 10px;
-}
-
 #rating-num{
   display: none;
 }

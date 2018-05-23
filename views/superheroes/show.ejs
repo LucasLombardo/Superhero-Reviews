@@ -14,7 +14,12 @@
                       <p class='output-star os-2'>&#9733;<p/>
                       <p class='output-star os-1'>&#9733;<p/>
                     </div>
-                    <span id="reviews-total">(<%= superhero.ratingstotal %> reviews)</span>
+                    
+                    <% if(superhero.ratingstotal > 1){ %>
+                        <span id="reviews-total">(<%= superhero.ratingstotal %> reviews)</span>
+                    <% } else { %>
+                        <span id="reviews-total">(<%= superhero.ratingstotal %> review)</span>
+                    <% } %>
                 </li>
                 <li class="list-group-item">
                     <strong>Location:</strong> <span id='hero-location'><%=superhero.location%></span>
@@ -30,7 +35,9 @@
                     <p><%= superhero.description %></p>
                     <p>
                         <em>Submitted by <%= superhero.author.username %> on <%= superhero.dateadded.toDateString() %></em>
-                        <em class="pull-right">Last modified on <%= superhero.datemodified.toDateString() %></em>
+                        <% if(superhero.datemodified.toString() !== superhero.dateadded.toString()){ %>
+                            <em class="pull-right">Last modified on <%= superhero.datemodified.toDateString() %></em>
+                        <% } %>
                     </p>
                     <% if(currentUser && superhero.author.id.equals(currentUser._id)){ %>
                         <a class="btn btn-xs btn-warning" href="/superheroes/<%= superhero._id %>/edit">Edit</a>
@@ -77,6 +84,6 @@
     </div>
 </div>
 
-<!--<script src="<%= process.env.GMKEY %>" type="text/javascript"></script>-->
+<script src="<%= process.env.GMKEY %>" type="text/javascript"></script>
 <script type="text/javascript" src="/scripts/show.js"></script>
 <% include ../partials/footer %>
