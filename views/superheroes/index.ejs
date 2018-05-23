@@ -1,36 +1,40 @@
 <% include ../partials/header %> 
 
- <div class="container">
-     <header class="jumbotron">
-         <div class="container">
-             <h1>Welcome to Superhero Reviews!</h1>
-             <p>View our collection of distinguished superheroes from around the world (and out of it)!</p>
-             <p>
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1>Welcome to Superhero Reviews!</h1>
+            <p>View our collection of distinguished superheroes from around the world (and out of it)!</p>
+            <p>
                 <a class="btn btn-primary btn-large" href="/superheroes/new">Add New Superhero</a>
-             </p>
-         </div>
-     </header>
+            </p>
+        </div>
+    </header>
      
-     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
         <% superheroes.forEach(function(superhero){ %>
             <div class="col-md-4 col-sm-6">
                 <div class="thumbnail">
                    <img class = "index-img" src="<%= superhero.image %>">
                    <div class="caption">
-                       <h4><%= superhero.name %></h4>
+                        <h4><%= superhero.name %></h4>
                         <div class="star-rated r<%= superhero.rating %>">
-                          <p class='output-star os-5'>&#9733;<p/>
-                          <p class='output-star os-4'>&#9733;<p/>
-                          <p class='output-star os-3'>&#9733;<p/>
-                          <p class='output-star os-2'>&#9733;<p/>
-                          <p class='output-star os-1'>&#9733;<p/>
+                            <p class='output-star os-5'>&#9733;<p/>
+                            <p class='output-star os-4'>&#9733;<p/>
+                            <p class='output-star os-3'>&#9733;<p/>
+                            <p class='output-star os-2'>&#9733;<p/>
+                            <p class='output-star os-1'>&#9733;<p/>
                         </div>
-                        <h5>(<%= superhero.ratingstotal %> reviews)</h5>
-                        <h6>Added on <%= superhero.dateadded.toDateString() %></h6>
-                   </div>
-                   <p>
-                       <a href="/superheroes/<%= superhero._id %>" class="btn btn-primary">View More Info</a>
-                   </p>
+                        <% if(superhero.ratingstotal > 1){ %>
+                            <h5>(<%= superhero.ratingstotal %> reviews)</h5>
+                        <% } else { %>
+                            <h5>(<%= superhero.ratingstotal %> review)</h5>
+                        <% } %>
+                        <h6>Added <%= superhero.dateadded.toDateString().slice(4) %></h6>
+                    </div>
+                    <p>
+                        <a href="/superheroes/<%= superhero._id %>" class="btn btn-primary">View More Info</a>
+                    </p>
                 </div>
             </div>
         <% }); %>
